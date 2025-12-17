@@ -1,0 +1,35 @@
+package utils;
+
+import enums.Sex;
+import enums.Type;
+
+import java.util.regex.Pattern;
+
+public class Validator {
+    public static boolean validateNamePet(String name) {
+        if (name.isBlank()) return true;
+        return Pattern.matches("^[A-Za-z]+(?:\\s+[A-Za-z]+)+$", name.trim());
+    }
+
+    public static boolean validateTypePet(String name) {
+        return name.equalsIgnoreCase(Type.DOG.getTYPE()) || name.equalsIgnoreCase(Type.CAT.getTYPE());
+    }
+
+    public static boolean validateSexPet(String name) {
+        return name.equalsIgnoreCase(Sex.MALE.getSEX()) || name.equalsIgnoreCase(Sex.FEMALE.getSEX());
+    }
+
+    public static boolean validateAgePet(String age) {
+        return Double.parseDouble(age.replace(",", ".")) <= 20;
+    }
+
+    public static boolean validateWeightPet(String weightPet) {
+        double weightPetParsed = Double.parseDouble(weightPet.replace(",", "."));
+        return weightPetParsed >= 0.5 && weightPetParsed <= 60;
+    }
+
+    public static boolean validateRacePet(String race) {
+        if(race.isBlank()) return false;
+        return Pattern.matches("^[A-Za-z]+(?:\\s+[A-Za-z]+)*$", race.trim());
+    }
+}
